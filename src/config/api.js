@@ -4,7 +4,10 @@ config.set(
     {
         apiUrl: "http://0.0.0.0:8000",
         apiRequests: {
-            login: "/api/token/"
+            login: "/api/token/",
+            currentUser: "/api/current-user",
+            clusterList: "/api/clusters",
+            brokerTopics: "/api/broker/:brokerid/topics",
         }
     }
 );            
