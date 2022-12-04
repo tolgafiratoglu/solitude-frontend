@@ -14,6 +14,7 @@ export const loginService = (username, password) => {
                 if(response.data.access) {
                     // Set JWT token:
                     localStorage.setItem('jwtToken', response.data.access)
+                    localStorage.setItem('refreshToken', response.data.refresh)
                     return {'status': 'success', 'data': {'token': response.data.access}}
                 }else{
                     return {'status': 'error', 'error': 'response'}

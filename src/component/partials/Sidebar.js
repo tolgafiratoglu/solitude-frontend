@@ -21,22 +21,27 @@ const Sidebar = (props) => {
     return (
         <div className="sidebar-wrapper">
             <ul>
-                {clusterList && clusterList.length > 0 ? clusterList.map(function(resourceListItem, idx){
+                {clusterList && clusterList.length > 0 ? clusterList.map(function(clusterListItem, idx){
                     return (
                         <li key={idx}>
-                            <strong>{resourceListItem.title}</strong>
+                            <h6>{clusterListItem.title}</h6>
                             <ul>
-                                {resourceListItem.brokers.length > 0 ? resourceListItem.brokers.map(function(broker, idy){
-                                    return (
-                                        <li key={idy}>
-                                            <Link to={'/broker/' + broker.id + '/topics'}>{broker.host}:{broker.port}</Link>
-                                        </li>
-                                    )
-                                }) : ''}
+                                <li key="brokers-{clusterListItem}">
+                                    <Link to={'/cluster/' + clusterListItem.id + '/brokers'}>Brokers</Link>
+                                </li>
+                                <li key="topics-{clusterListItem}">
+                                    <Link to={'/cluster/' + clusterListItem.id + '/topics'}>Topics</Link>
+                                </li>
+                                <li key="topic-create-{clusterListItem}">
+                                    <Link to={'/cluster/' + clusterListItem.id + '/topic/create'}>Create Topic</Link>
+                                </li>
                             </ul>
                         </li>
                     )
                 }) : ''}
+                <li>
+                    <Link to={'/ksql'}>KSQL</Link>
+                </li>
             </ul>
         </div>
     );
