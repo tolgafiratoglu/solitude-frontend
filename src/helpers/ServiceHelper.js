@@ -6,7 +6,10 @@ export default class ServiceHelper extends React.Component {
         let authToken = localStorage.getItem('jwtToken');
         if(authToken != null){
             var config = {
-                headers: {'Authorization': "Bearer " + authToken}
+                headers: {
+                    'Authorization': "Bearer " + authToken,
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
             };
 
             return config;

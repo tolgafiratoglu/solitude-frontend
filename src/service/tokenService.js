@@ -14,7 +14,6 @@ export const tokenRefresh = (refreshToken) => {
             jwtConfig
         ).then(
             (response) => {
-                console.log(response.data.access)
                 localStorage.setItem('jwtToken', response.data.access)
             }
         ).catch(
@@ -32,7 +31,7 @@ export const tokenRefreshService = () => {
         var refreshInterval = setInterval(
             function() {
                 tokenRefresh(refreshToken)
-            }, 1500
+            }, 15000
         );
     } else {
         document.location = '/login'

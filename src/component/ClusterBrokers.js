@@ -3,24 +3,24 @@ import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Table } from 'reactstrap';
 import Sidebar from "./partials/Sidebar";
 
-import { clusterTopicsService } from '../service/clusterService'
+import { clusterBrokersService } from '../service/clusterService'
 import { tokenRefreshService } from '../service/tokenService'
 
 const ClusterBrokers = (props) => {
 
-    const [topicList, setTopicList] = React.useState([]);
+    const [brokerList, setBrokerList] = React.useState([]);
     const params = useParams()
 
-    const getBrokerTopics = (clusterId) => {
-        clusterTopicsService(clusterId).then(
+    const getClusterBrokers = (clusterId) => {
+        clusterBrokersService(clusterId).then(
             (response) => {
-                setTopicList(response.data);
+                setBrokerList(response.data);
             }
         )
     }
 
     useEffect(() => {
-        getBrokerTopics(params.clusterid)
+        getClusterBrokers(params.clusterid)
         tokenRefreshService()
     }, []);
 
@@ -33,23 +33,23 @@ const ClusterBrokers = (props) => {
                     </Col>
                     <Col xs="12" sm="9">
                         <div className="content-wrapper">
-                            {topicList && topicList.length > 0 ? (
+                            {brokerList && brokerList.length > 0 ? (
                                 <Table>
                                 <thead>
                                 <tr>
-                                    <th>Topic Title</th>
-                                    <th>Number of Partitions</th>
+                                    <th>Broker Title</th>
+                                    <th>Host</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {topicList && topicList.length > 0 ? topicList.map(function(topic, idx){
+                                {brokerList && brokerList.length > 0 ? brokerList.map(function(broker, idx){
                                     return (
                                         <tr key={idx}>
-                                            <td>{topic.topic}</td>
-                                            <td>{topic.num_partitions} Partitions</td>
+                                            <td>{broker.title}</td>
+                                            <td>{broker.host + ':' + broker.port}</td>
                                             <td>
-                                                <Link to={'/cluster/' + params.clusterid + '/' + topic.topic + '/add-partition'}>Add Partition</Link>
+                                                <Link to={'/cluster/' + params.clusterid + '/' + broker.topic + '/add-partition'}>Add Partition</Link>
                                             </td>
                                         </tr>
                                     )
@@ -66,4 +66,4 @@ const ClusterBrokers = (props) => {
 
 }    
 
-export default ClusterTopics;
+export default ClusterBrokers;
