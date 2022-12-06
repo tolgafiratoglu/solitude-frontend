@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
-import { Container, Row, Col, Table } from 'reactstrap';
+import { Container, Row, Col, Table, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Sidebar from "./partials/Sidebar";
 
-import { clusterTopicsService } from '../service/clusterService'
+import { clusterTopicsService, clusterInfoService } from '../service/clusterService'
 import { tokenRefreshService } from '../service/tokenService'
 
 const ClusterTopics = (props) => {
 
     const [topicList, setTopicList] = React.useState([]);
     const params = useParams()
+
+    const [cluster, setCluster] = React.useState([]);
 
     const getClusterTopics = (clusterId) => {
         clusterTopicsService(clusterId).then(
@@ -19,9 +21,18 @@ const ClusterTopics = (props) => {
         )
     }
 
+    const initData = () => {
+        clusterInfoService(params.clusterid).then(
+            (response) => {
+                setCluster(response.data)
+            }
+        )
+    }
+
     useEffect(() => {
         getClusterTopics(params.clusterid)
         tokenRefreshService()
+        initData()
     }, []);
 
     return (
@@ -33,6 +44,12 @@ const ClusterTopics = (props) => {
                     </Col>
                     <Col xs="12" sm="9">
                         <div className="content-wrapper">
+                            <Breadcrumb>
+                                <BreadcrumbItem>
+                                    {cluster.title}
+                                </BreadcrumbItem>
+                                <BreadcrumbItem active>Topics</BreadcrumbItem>
+                            </Breadcrumb>
                             {topicList && topicList.length > 0 ? (
                                 <Table>
                                 <thead>
@@ -49,7 +66,7 @@ const ClusterTopics = (props) => {
                                             <td>{topic.topic}</td>
                                             <td>{topic.num_partitions} Partitions</td>
                                             <td>
-                                                <Link to={'/cluster/' + params.clusterid + '/' + topic.topic + '/add-partition'}>Add Partition</Link>
+                                                <Link to={'/cluster/' + params.clusterid + '/' + topic.topic + '/add-partition'}>Increase Partitions</Link>
                                             </td>
                                         </tr>
                                     )

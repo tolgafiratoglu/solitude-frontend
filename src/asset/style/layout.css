@@ -16,6 +16,7 @@
     background-color: #ffffff;
     padding: 1rem;
     border: 1px solid #e5e5e5;
+    height: 400px;
 }
 
 .sidebar-wrapper a{
@@ -23,7 +24,31 @@
     clear: both;
     display: inline-block;
     padding: 0px !important;
+    text-decoration: none;
 }
+
+.sidebar-wrapper .sidebar-title{
+    font-weight: bold;
+}    
+
+ .sidebar-wrapper ul{
+    list-style: none;
+    padding-left: 2em;
+}    
+
+.sidebar-wrapper ul li{
+    line-height: 2em;
+}    
+
+.sidebar-wrapper ul li svg{
+    margin-right: 0.5em;
+    min-width: 20px;
+}    
+
+.sidebar-wrapper ul li h6{
+    margin: 0px !important;
+    line-height: 2em;
+}    
 
 .content-wrapper{
     background-color: #ffffff;

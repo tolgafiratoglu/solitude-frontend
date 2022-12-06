@@ -8,7 +8,7 @@ export default class ServiceHelper extends React.Component {
             var config = {
                 headers: {
                     'Authorization': "Bearer " + authToken,
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             };
 

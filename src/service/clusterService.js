@@ -43,7 +43,30 @@ export const clusterTopicsService = (clusterId) => {
     );
 
     return response;
-}    
+}  
+
+export const topicService = (clusterId, topic) => {
+
+    let headers = ServiceHelper.getPrivateConfig()
+    let apiUrl = apiConfig.get('apiUrl') + apiConfig.get('apiRequests.brokerTopic')
+        apiUrl = apiUrl.replace(':clusterId', clusterId)
+        apiUrl = apiUrl.replace(':topic', topic)
+
+    let response = axios.get(
+        apiUrl,
+        headers
+    ).then(
+        (response) => {
+            return response
+        }
+    ).catch(
+        (response) => {
+            return {'status': 'error', 'error': response}
+        }
+    );
+
+    return response;
+} 
 
 export const clusterInfoService = (clusterId) => {
 
@@ -94,14 +117,40 @@ export const clusterTopicService = (clusterId, title, noPartitions, replicationF
     let apiUrl = apiConfig.get('apiUrl') + apiConfig.get('apiRequests.clusterSaveTopic')
     apiUrl = apiUrl.replace(':clusterId', clusterId)
 
-    console.log('apiUrl', headers)
-
     let response = axios.post(
         apiUrl,
         {
             topic_title: title,
             topic_partition_number: parseInt(noPartitions),
             topic_replication_factor: parseInt(replicationFactor)
+        },
+        headers
+    ).then(
+        (response) => {
+            console.log(response)
+            return response
+        }
+    ).catch(
+        (response) => {
+            return {'status': 'error', 'error': response}
+        }
+    );
+
+    return response;
+}
+
+export const topicPartitionIncrease = (clusterId, topic, noPartitions) => {
+    let headers = ServiceHelper.getPrivateConfig()
+    let apiUrl = apiConfig.get('apiUrl') + apiConfig.get('apiRequests.addPartition')
+        apiUrl = apiUrl.replace(':clusterId', clusterId)
+        apiUrl = apiUrl.replace(':topic', topic)
+
+    console.log(apiUrl)
+
+    let response = axios.post(
+        apiUrl,
+        {
+            number_of_partitions: parseInt(noPartitions)
         },
         headers
     ).then(

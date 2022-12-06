@@ -11,7 +11,9 @@ config.set(
             clusterList: "/api/clusters",
             clusterSaveTopic: "/api/cluster/:clusterId/topic/save",
             brokerTopics: "/api/cluster/:clusterId/topics",
+            brokerTopic: "/api/cluster/:clusterId/topic/:topic",
             clusterBrokers: "/api/cluster/:clusterId/brokers",
+            addPartition: "/api/cluster/:clusterId/:topic/partition/create"
         }
     }
 );            

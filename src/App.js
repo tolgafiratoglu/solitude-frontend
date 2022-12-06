@@ -7,6 +7,7 @@ import Dashboard from './component/Dashboard'
 import ClusterBrokers from './component/ClusterBrokers'
 import ClusterTopics from './component/ClusterTopics'
 import ClusterTopicCreate from './component/ClusterTopicCreate';
+import TopicPartitionIncrease from './component/TopicPartitionIncrease'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/cluster/:clusterid/brokers" name="cluster.brokers" element={ <ClusterBrokers/> } />
           <Route exact path="/cluster/:clusterid/topics" name="cluster.topics" element={ <ClusterTopics/> } />
           <Route exact path="/cluster/:clusterid/topic/create" name="cluster.topic.create" element={ <ClusterTopicCreate/> } />
+          <Route exact path="/cluster/:clusterid/:topic/add-partition" name="cluster.topic.partition" element={ <TopicPartitionIncrease/> } />
         </Routes>
       </BrowserRouter>    
     </div> 

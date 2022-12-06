@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 import {clusterService} from '../../service/clusterService'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDashboard, faDatabase, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
+
 const Sidebar = (props) => {
     const [clusterList, setClusterList] = React.useState([]);
 
@@ -21,10 +24,16 @@ const Sidebar = (props) => {
     return (
         <div className="sidebar-wrapper">
             <ul>
+                <li>
+                    <FontAwesomeIcon icon={faDashboard} /><Link to={'/dashboard'}>Dashboard</Link>
+                </li>
+                <li>
+                    <FontAwesomeIcon icon={faDatabase} /><Link to={'/ksql'}>KSQL</Link>
+                </li>
                 {clusterList && clusterList.length > 0 ? clusterList.map(function(clusterListItem, idx){
                     return (
                         <li key={idx}>
-                            <h6>{clusterListItem.title}</h6>
+                            <h6 className="sidebar-title"><FontAwesomeIcon icon={faNetworkWired} />{clusterListItem.title}</h6>
                             <ul>
                                 <li key="brokers-{clusterListItem}">
                                     <Link to={'/cluster/' + clusterListItem.id + '/brokers'}>Brokers</Link>
@@ -39,9 +48,7 @@ const Sidebar = (props) => {
                         </li>
                     )
                 }) : ''}
-                <li>
-                    <Link to={'/ksql'}>KSQL</Link>
-                </li>
+                
             </ul>
         </div>
     );
