@@ -27,9 +27,6 @@ const Sidebar = (props) => {
                 <li>
                     <FontAwesomeIcon icon={faDashboard} /><Link to={'/dashboard'}>Dashboard</Link>
                 </li>
-                <li>
-                    <FontAwesomeIcon icon={faDatabase} /><Link to={'/ksql'}>KSQL</Link>
-                </li>
                 {clusterList && clusterList.length > 0 ? clusterList.map(function(clusterListItem, idx){
                     return (
                         <li key={idx}>
