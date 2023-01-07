@@ -14,6 +14,7 @@ const Login = (props) => {
         return await loginService(username, password)
             .then(
                 (loginResponse) => {
+                    localStorage.setItem('jwtToken', loginResponse.data.token)
                     if (loginResponse.status === 'success') {
                         window.location = "/dashboard"
                     }

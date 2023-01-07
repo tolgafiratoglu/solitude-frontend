@@ -1,13 +1,15 @@
 import axios from "axios";
-import {customConfig} from "../config/config";
+import {apiConfig} from "../config/api";
 import ServiceHelper from "../helpers/ServiceHelper";
+
+import { redirect } from 'react-router-dom';
 
 export const currentUserService = () => {
 
     let config = ServiceHelper.getPrivateConfig()
 
     return axios.get(
-        customConfig.get('apiUrl') + customConfig.get('apiRequests.currentUser'),
+        apiConfig.get('apiUrl') + apiConfig.get('apiRequests.currentUser'),
         config
     ).then(
         (response) => {
@@ -26,4 +28,9 @@ export const currentUserService = () => {
         }
     );
 
+}
+
+export const isLoggedIn = () => {
+    console.log(localStorage.getItem("jwtToken"))
+    return localStorage.getItem("jwtToken") ? true : redirect('/login');
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Table, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+
 import Sidebar from "./partials/Sidebar";
+import Header from "./partials/Header"
 
 import { clusterTopicsService, clusterInfoService } from '../service/clusterService'
 import { tokenRefreshService } from '../service/tokenService'
@@ -37,6 +39,7 @@ const ClusterTopics = (props) => {
 
     return (
         <div>
+            <Header></Header>
             <Container className="content-container">
                 <Row>
                     <Col xs="0" sm="3" className="d-none d-lg-block">

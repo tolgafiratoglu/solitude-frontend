@@ -2,6 +2,8 @@ import axios from "axios";
 import {apiConfig} from "../config/api";
 import ServiceHelper from "../helpers/ServiceHelper";
 
+import { redirect } from 'react-router-dom';
+
 export const clusterService = () => {
 
     let jwtConfig = ServiceHelper.getPrivateConfig()

@@ -27,6 +27,8 @@ export const tokenRefresh = (refreshToken) => {
 export const tokenRefreshService = () => {
     let refreshToken = localStorage.getItem("refreshToken")
 
+    console.log('refreshToken', refreshToken)
+
     if(typeof refreshToken != undefined){
         var refreshInterval = setInterval(
             function() {

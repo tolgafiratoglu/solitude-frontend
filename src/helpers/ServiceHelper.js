@@ -4,6 +4,7 @@ export default class ServiceHelper extends React.Component {
 
     static getPrivateConfig() {
         let authToken = localStorage.getItem('jwtToken');
+        
         if(authToken != null){
             var config = {
                 headers: {

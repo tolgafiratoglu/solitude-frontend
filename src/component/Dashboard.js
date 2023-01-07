@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Table } from 'reactstrap';
-import Sidebar from "./partials/Sidebar";
+
+import Sidebar from "./partials/Sidebar"
+import Header from "./partials/Header"
 
 import { clusterService } from '../service/clusterService'
 import { tokenRefreshService } from '../service/tokenService'
@@ -26,6 +28,7 @@ const Dashboard = (props) => {
 
     return (
         <div>
+            <Header></Header>
             <Container className="content-container">
                 <Row>
                     <Col xs="0" sm="3" className="d-none d-lg-block">

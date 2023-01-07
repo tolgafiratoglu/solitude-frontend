@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button, Breadcrumb, BreadcrumbItem, Alert } from 'reactstrap';
+
 import Sidebar from "./partials/Sidebar";
+import Header from "./partials/Header"
 
 import { clusterInfoService, topicService, topicPartitionIncrease } from '../service/clusterService'
 import { tokenRefreshService } from '../service/tokenService'
@@ -66,6 +68,7 @@ const TopicPartitionIncrease = (props) => {
 
     return (
         <div>
+            <Header></Header>
             <Container className="content-container">
                 <Row>
                     <Col xs="0" sm="3" className="d-none d-lg-block">

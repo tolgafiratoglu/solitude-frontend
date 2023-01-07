@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-import {clusterService} from '../../service/clusterService'
+import { clusterService } from '../../service/clusterService'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDashboard, faDatabase, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
