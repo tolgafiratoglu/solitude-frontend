@@ -1,4 +1,4 @@
-Solitude frontend is part of Solitude project. Please refer main package for full functionality and coordination with Django.
+Solitude frontend is part of Solitude project. Please refer <a href="https://github.com/tolgafiratoglu/solitude">main package</a> for full functionality in coordination with Django.
 
 1. Npm install will install all required packages:
 <code>npm install</code>
